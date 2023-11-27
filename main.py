@@ -1,5 +1,5 @@
 import scramble as scramble
-
+import moves as move
 # Positions
 # Top = yellow
 # Front = greem
@@ -32,34 +32,34 @@ solved_state_sring = "YYYYYYYYYOOOOOOOOOGGGGGGGGGWWWWWWWWWRRRRRRRRRBBBBBBBBB"
 
 Solved_state = [
     [
-        "Y","Y","Y",
-        "Y","Y","Y",
-        "Y","Y","Y"
+        ["Y","Y","Y"],  #[0][0]
+        ["Y","Y","Y"],  #[0][1]
+        ["Y","Y","Y"]   #[0][2]
     ],
     [
-        "O","O","O",
-        "O","O","O",
-        "O","O","O"
+        ["O","O","O"],  #[1][0]
+        ["O","O","O"],  #[1][1]
+        ["O","O","O"]   #[1][2]
     ],
     [
-        "G","G","G",
-        "G","G","G",
-        "G","G","G"
+        ["G","G","G"],  #[2][0]
+        ["G","G","G"],  #[2][1]
+        ["G","G","G"]   #[2][2]
     ],
     [
-        "W","W","W",
-        "W","W","W",
-        "W","W","W"
+        ["W","W","W"],  #[3][0]
+        ["W","W","W"],  #[3][1]
+        ["W","W","W"]   #[3][2]
     ],
     [
-        "R","R","R",
-        "R","R","R",
-        "R","R","R"
+        ["R","R","R"],  #[4][0]
+        ["R","R","R"],  #[4][1]
+        ["R","R","R"]   #[4][2]
     ],
     [
-        "B","B","B",
-        "B","B","B",
-        "B","B","B"
+        ["B","B","B"],  #[5][0]
+        ["B","B","B"],  #[5][1]
+        ["B","B","B"]   #[5][2]
     ]
 ]
 
@@ -69,4 +69,7 @@ moves_list = [
     "F","F'","F2","B","B'","B2"
 ]
 
-print(scramble.scrambler(moves_list))
+# print(scramble.scrambler(moves_list))
+
+cube = move.move_R(Solved_state)
+print(cube)
