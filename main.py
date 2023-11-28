@@ -63,13 +63,6 @@ Solved_state = [
     ]
 ]
 
-moves_list = [
-    "U","U'","U2","D","D'","D2",
-    "R","R'","R2","L","L'","L2",
-    "F","F'","F2","B","B'","B2"
-]
 
 # print(scramble.scrambler(moves_list))
 
-cube = move.move_R(Solved_state)
-print(cube)
