@@ -1,6 +1,12 @@
 def move_U2(cube):
     cube[1][0],cube[4][0] = cube[4][0],cube[1][0]
     cube[2][0],cube[5][0] = cube[5][0],cube[2][0]
+    
+    #swaping the yellow side
+    cube[0][0][0],cube[0][2][2] = cube[0][2][2],cube[0][0][0]
+    cube[0][0][2],cube[0][2][0] = cube[0][2][0],cube[0][0][2]
+    cube[0][0][1],cube[0][2][1] = cube[0][2][1],cube[0][0][1]
+    cube[0][1][0],cube[0][1][2] = cube[0][1][2],cube[0][1][0]
     return cube
 
 def move_U(cube):
@@ -9,6 +15,20 @@ def move_U(cube):
     cube[1][0] = cube[5][0]
     cube[5][0] = cube[4][0]
     cube[4][0] = temp
+    
+    #rotating corner peices
+    temp = cube[0][0][0]
+    cube[0][0][0] = cube[0][2][0]
+    cube[0][2][0] = cube[0][2][2]
+    cube[0][2][2] = cube[0][0][2]
+    cube[0][0][2] = temp
+    
+    #rotating the edge pieces
+    temp = cube[0][0][1]
+    cube[0][0][1] = cube[0][1][0]
+    cube[0][1][0] = cube[0][2][1]
+    cube[0][2][1] = cube[0][1][2]
+    cube[0][1][2] = temp
     return cube
 
 def move_Uprime(cube):
@@ -17,11 +37,31 @@ def move_Uprime(cube):
     cube[4][0] = cube[5][0]
     cube[5][0] = cube[1][0]
     cube[1][0] = temp
+    
+    #rotating corner prices 
+    temp = cube[0][0][0]
+    cube[0][0][0] = cube[0][0][2]
+    cube[0][0][2] = cube[0][2][2]
+    cube[0][2][2] = cube[0][2][0]
+    cube[0][2][0] = temp
+    
+    #rotating the edge pieces
+    temp = cube[0][0][1]
+    cube[0][0][1] = cube[0][1][2]
+    cube[0][1][2] = cube[0][2][1]
+    cube[0][2][1] = cube[0][1][0]
+    cube[0][1][0] = temp
     return cube
 
 def move_D2(cube):
-    cube[1][2],cube[4][2] = cube[4][0],cube[1][2]
-    cube[2][2],cube[5][2] = cube[5][0],cube[2][2]
+    cube[1][2],cube[4][2] = cube[4][2],cube[1][2]
+    cube[2][2],cube[5][2] = cube[5][2],cube[2][2]
+    
+    #swaping the yellow side
+    cube[3][0][0],cube[3][2][2] = cube[3][2][2],cube[3][0][0]
+    cube[3][0][2],cube[3][2][0] = cube[3][2][0],cube[3][0][2]
+    cube[3][0][1],cube[3][2][1] = cube[3][2][1],cube[3][0][1]
+    cube[3][1][0],cube[3][1][2] = cube[3][1][2],cube[3][1][0]
     return cube
 
 def move_D(cube):
@@ -30,6 +70,21 @@ def move_D(cube):
     cube[4][2] = cube[5][2]
     cube[5][2] = cube[1][2]
     cube[1][2] = temp
+    
+    #rotating corner peices
+    temp = cube[3][0][0]
+    cube[3][0][0] = cube[3][2][0]
+    cube[3][2][0] = cube[3][2][2]
+    cube[3][2][2] = cube[3][0][2]
+    cube[3][0][2] = temp
+    
+    #rotating the edge pieces
+    temp = cube[3][0][1]
+    cube[3][0][1] = cube[3][1][0]
+    cube[3][1][0] = cube[3][2][1]
+    cube[3][2][1] = cube[3][1][2]
+    cube[3][1][2] = temp
+    
     return cube
 
 def move_Dprime(cube):
@@ -38,6 +93,21 @@ def move_Dprime(cube):
     cube[1][2] = cube[5][2]
     cube[5][2] = cube[4][2]
     cube[4][2] = temp
+    
+    #rotating corner prices 
+    temp = cube[3][0][0]
+    cube[3][0][0] = cube[3][0][2]
+    cube[3][0][2] = cube[3][2][2]
+    cube[3][2][2] = cube[3][2][0]
+    cube[3][2][0] = temp
+    
+    #rotating the edge pieces
+    temp = cube[3][0][1]
+    cube[3][0][1] = cube[3][1][2]
+    cube[3][1][2] = cube[3][2][1]
+    cube[3][2][1] = cube[3][1][0]
+    cube[3][1][0] = temp
+    
     return cube
 
 def move_R2(cube):
@@ -47,6 +117,13 @@ def move_R2(cube):
         #swap blue and green prices
         cube[2][i][2],cube[5][i][2] = cube[5][i][2],cube[2][i][2]
 
+    #rotating orange corners
+    cube[1][0][0],cube[1][2][2] = cube[1][2][2],cube[1][0][0]
+    cube[1][0][2],cube[1][2][0] = cube[1][2][0],cube[1][0][2]
+    
+    #rotating the edges
+    cube[1][0][1],cube[1][2][1] = cube[1][2][1],cube[1][0][1]
+    cube[1][1][0],cube[1][1][2] = cube[1][1][2],cube[1][1][0]
     return cube
 
 def move_R(cube):
@@ -159,6 +236,6 @@ moves_dict = {
     
     "B" : move_B,
     "B2" : move_B2,
-    "B'" : move_Bprime,
+    "B'" : move_Bprime
     
 }

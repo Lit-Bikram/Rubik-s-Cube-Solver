@@ -1,6 +1,12 @@
 import random
 
-def scrambler(moves_list):
+def scrambler():
+    moves_list = [
+        "U","U2","U'","D","D2","D'",  
+        "R","R2","R'","L","L2","L'",  
+        "F","F2","F'","B","B2","B'",
+    ]
+    
     scramble_list = []
     same_move_counter = 0
     opp_move_counter = 0
@@ -13,4 +19,4 @@ def scrambler(moves_list):
             opp_move_counter = x//6
             scramble_list.append(moves_list[x])
     
-    return " ".join(scramble_list)
+    return scramble_list

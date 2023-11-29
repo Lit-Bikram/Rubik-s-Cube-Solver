@@ -27,42 +27,52 @@ import moves as move
 #              |-D7--D8--D9-|
 #              |------------|
 
-solved_state_sring = "YYYYYYYYYOOOOOOOOOGGGGGGGGGWWWWWWWWWRRRRRRRRRBBBBBBBBB"
+solved_state_string = "YYYYYYYYYOOOOOOOOOGGGGGGGGGWWWWWWWWWRRRRRRRRRBBBBBBBBB"
 
 
 Solved_state = [
     [
-        ["Y","Y","Y"],  #[0][0]
-        ["Y","Y","Y"],  #[0][1]
-        ["Y","Y","Y"]   #[0][2]
+        ["Y1","Y2","Y3"],  #[0][0]
+        ["Y4","Y5","Y6"],  #[0][1]
+        ["Y7","Y8","Y9"]   #[0][2]
     ],
     [
-        ["O","O","O"],  #[1][0]
-        ["O","O","O"],  #[1][1]
-        ["O","O","O"]   #[1][2]
+        ["O1","O2","O3"],  #[1][0]
+        ["O4","O5","O6"],  #[1][1]
+        ["O7","O8","O9"]   #[1][2]
     ],
     [
-        ["G","G","G"],  #[2][0]
-        ["G","G","G"],  #[2][1]
-        ["G","G","G"]   #[2][2]
+        ["G1","G2","G3"],  #[2][0]
+        ["G4","G5","G6"],  #[2][1]
+        ["G7","G8","G9"]   #[2][2]
     ],
     [
-        ["W","W","W"],  #[3][0]
-        ["W","W","W"],  #[3][1]
-        ["W","W","W"]   #[3][2]
+        ["W1","W2","W3"],  #[3][0]
+        ["W4","W5","W6"],  #[3][1]
+        ["W7","W8","W9"]   #[3][2]
     ],
     [
-        ["R","R","R"],  #[4][0]
-        ["R","R","R"],  #[4][1]
-        ["R","R","R"]   #[4][2]
+        ["R1","R2","R3"],  #[4][0]
+        ["R4","R5","R6"],  #[4][1]
+        ["R7","R8","R9"]   #[4][2]
     ],
     [
-        ["B","B","B"],  #[5][0]
-        ["B","B","B"],  #[5][1]
-        ["B","B","B"]   #[5][2]
+        ["B1","B2","B3"],  #[5][0]
+        ["B4","B5","B6"],  #[5][1]
+        ["B7","B8","B9"]   #[5][2]
     ]
 ]
 
+# scramble_arr = scramble.scrambler()
 
-# print(scramble.scrambler(moves_list))
+# print("Scramble is: \n"," ".join(scramble_arr),"\n")
+# for i in scramble_arr:
+#     move.moves_dict[i](Solved_state)
+# for i in range(6):
+#     Solved_state = move.move_R2(Solved_state)
 
+Solved_state = move.move_Dprime(Solved_state)
+for i in range(3):
+    for j in range(6):
+        print(Solved_state[j][i],end=" ")
+    print()
