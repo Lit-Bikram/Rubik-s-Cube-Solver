@@ -1,2 +1,2 @@
-move.move_Rprime(Solved_state)
-# move.move_Uprime(Solved_state)
+for i in scramble_arr:
+#     move.moves_dict[i](Solved_state)

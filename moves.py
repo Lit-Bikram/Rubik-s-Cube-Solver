@@ -110,12 +110,12 @@ def move_Dprime(cube):
     
     return cube
 
-def j(i):
-        if i == 0 :
+def j(a):
+        if a == 0 :
             return 2
-        elif i == 1:
-            return i
-        else :
+        elif a == 1:
+            return a
+        elif a == 2:
             return 0
 
 def move_R2(cube):
@@ -242,11 +242,11 @@ def move_Lprime(cube):
     return cube
 
 def move_F2(cube):
-    
-    cube[0][2],cube[3][2] = cube[3][2],cube[0][2]
-    cube[1][2],cube[4][2] = cube[4][2],cube[1][2]
-    
-    #swaping the red side
+    for i in range(0,3):
+        cube[0][2][j(i)],cube[3][0][i] = cube[3][0][i],cube[0][2][j(i)]
+        cube[1][j(i)][0],cube[4][i][2] = cube[4][i][2],cube[1][j(i)][0]
+        
+    #swaping the green side
     cube[2][0][0],cube[2][2][2] = cube[2][2][2],cube[2][0][0]
     cube[2][0][2],cube[2][2][0] = cube[2][2][0],cube[2][0][2]
     cube[2][0][1],cube[2][2][1] = cube[2][2][1],cube[2][0][1]
@@ -255,40 +255,113 @@ def move_F2(cube):
     return cube
 
 def move_F(cube):
-    temp = cube[0][2]
-    cube[0][2] = cube[4][2]
-    cube[4][2] = cube[3][2]
-    cube[3][2] = cube[1][2]
-    cube[1][2] = temp
+    for i in range(3):
+        temp = cube[0][2][j(i)]  # storing yellow in temp
+        cube[0][2][j(i)] = cube[4][i][2]  # red to yellow
+        cube[4][i][2] = cube[3][0][i]  # white to red
+        cube[3][0][i] = cube[1][j(i)][0]  # orange to white
+        cube[1][j(i)][0] = temp  # yellow to orange
+        
+    #rotating corner peices
+    temp = cube[2][0][0]
+    cube[2][0][0] = cube[2][2][0]
+    cube[2][2][0] = cube[2][2][2]
+    cube[2][2][2] = cube[2][0][2]
+    cube[2][0][2] = temp
+    
+    #rotating the edge pieces
+    temp = cube[2][0][1]
+    cube[2][0][1] = cube[2][1][0]
+    cube[2][1][0] = cube[2][2][1]
+    cube[2][2][1] = cube[2][1][2]
+    cube[2][1][2] = temp
+    
     return cube
 
 def move_Fprime(cube):
-    temp = cube[0][2]
-    cube[0][2] = cube[1][2]
-    cube[1][2] = cube[3][2]
-    cube[3][2] = cube[4][2]
-    cube[4][2] = temp
+    for i in range(3):
+        temp = cube[0][2][i]# yellow to temp
+        cube[0][2][i] = cube[1][i][0] # orange to yellow
+        cube[1][i][0] = cube[3][0][j(i)] # white to orange
+        cube[3][0][j(i)] = cube[4][j(i)][2] # red to white
+        cube[4][j(i)][2] = temp  # yellow to red
+        
+    #rotating corner prices 
+    temp = cube[2][0][0]
+    cube[2][0][0] = cube[2][0][2]
+    cube[2][0][2] = cube[2][2][2]
+    cube[2][2][2] = cube[2][2][0]
+    cube[2][2][0] = temp
+    
+    #rotating the edge pieces
+    temp = cube[2][0][1]
+    cube[2][0][1] = cube[2][1][2]
+    cube[2][1][2] = cube[2][2][1]
+    cube[2][2][1] = cube[2][1][0]
+    cube[2][1][0] = temp
+    
     return cube
 
 def move_B2(cube):
-    cube[0][0],cube[3][0] = cube[3][0],cube[0][0]
-    cube[1][0],cube[4][0] = cube[4][0],cube[1][0]
+    for i in range(0,3):
+        cube[0][0][i],cube[3][2][j(i)] = cube[3][2][j(i)],cube[0][0][i]
+        cube[1][i][2],cube[4][j(i)][0] = cube[4][j(i)][0],cube[1][i][2]
+        
+    #swaping the red side
+    cube[5][0][0],cube[5][2][2] = cube[5][2][2],cube[5][0][0]
+    cube[5][0][2],cube[5][2][0] = cube[5][2][0],cube[5][0][2]
+    cube[5][0][1],cube[5][2][1] = cube[5][2][1],cube[5][0][1]
+    cube[5][1][0],cube[5][1][2] = cube[5][1][2],cube[5][1][0]
+    
     return cube
 
 def move_B(cube):
-    temp = cube[0][0]
-    cube[0][0] = cube[1][0]
-    cube[1][0] = cube[3][0]
-    cube[3][0] = cube[4][0]
-    cube[4][0] = temp
+    for i in range(0,3):
+        temp = cube[0][0][i]    # yellow to temp
+        cube[0][0][i] = cube[1][i][2] # orange to yellow
+        cube[1][i][2] = cube[3][2][j(i)] # white to orange
+        cube[3][2][j(i)] = cube[4][j(i)][0] # red to white
+        cube[4][j(i)][0] = temp  # yellow to red
+    
+    #rotating corner peices
+    temp = cube[5][0][0]
+    cube[5][0][0] = cube[5][2][0]
+    cube[5][2][0] = cube[5][2][2]
+    cube[5][2][2] = cube[5][0][2]
+    cube[5][0][2] = temp
+    
+    #rotating the edge pieces
+    temp = cube[5][0][1]
+    cube[5][0][1] = cube[5][1][0]
+    cube[5][1][0] = cube[5][2][1]
+    cube[5][2][1] = cube[5][1][2]
+    cube[5][1][2] = temp
+    
     return cube
 
 def move_Bprime(cube):
-    temp = cube[0][0]
-    cube[0][0] = cube[4][0]
-    cube[4][0] = cube[3][0]
-    cube[3][0] = cube[1][0]
-    cube[1][0] = temp
+    for i in range(3):
+        temp = cube[0][0][j(i)]  # storing yellow in temp
+        cube[0][0][j(i)] = cube[4][i][0]  # red to yellow
+        cube[4][i][0] = cube[3][2][i]  # white to red
+        cube[3][2][i] = cube[1][j(i)][2]  # orange to white
+        cube[1][j(i)][2] = temp  # yellow to orange
+        
+    
+    #rotating corner prices 
+    temp = cube[5][0][0]
+    cube[5][0][0] = cube[5][0][2]
+    cube[5][0][2] = cube[5][2][2]
+    cube[5][2][2] = cube[5][2][0]
+    cube[5][2][0] = temp
+    
+    #rotating the edge pieces
+    temp = cube[5][0][1]
+    cube[5][0][1] = cube[5][1][2]
+    cube[5][1][2] = cube[5][2][1]
+    cube[5][2][1] = cube[5][1][0]
+    cube[5][1][0] = temp
+    
     return cube
 
 moves_dict = {
