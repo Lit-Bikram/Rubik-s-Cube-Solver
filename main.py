@@ -69,9 +69,13 @@ Solved_state = [
 # for i in scramble_arr:
 #     move.moves_dict[i](Solved_state)
 # for i in range(6):
-#     Solved_state = move.move_R2(Solved_state)
+#     Solved_state = move.move_L(Solved_state)
+#     Solved_state = move.move_U(Solved_state)
+#     Solved_state = move.move_Lprime(Solved_state)
+#     Solved_state = move.move_Uprime(Solved_state)
 
-Solved_state = move.move_Dprime(Solved_state)
+Solved_state = move.move_F2(Solved_state)
+
 for i in range(3):
     for j in range(6):
         print(Solved_state[j][i],end=" ")
