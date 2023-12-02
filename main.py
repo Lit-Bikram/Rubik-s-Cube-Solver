@@ -1,5 +1,6 @@
 import scramble as scramble
 import moves as move
+import solve as solve
 # Positions
 # Top = yellow
 # Front = greem
@@ -63,22 +64,19 @@ Solved_state = [
     ]
 ]
 
+Unsolved_cube = Solved_state
+scramble_arr = ["R'", 'D', 'R', 'U2', 'B2', 'U', 'D2', 'B', 'L2', "R'", 'B2', 'R', 'B2', 'D2', 'L2', 'F2', 'D2', 'L', 'B2', 'L']
+
 # scramble_arr = scramble.scrambler()
 
-# print("Scramble is: \n"," ".join(scramble_arr),"\n")
-# for i in scramble_arr:
-#     move.moves_dict[i](Solved_state)
 
-# for i in range(6):
-#     move.move_R(Solved_state)
-#     move.move_U(Solved_state)
-#     move.move_Rprime(Solved_state)
-#     move.move_U(Solved_state)
-#     move.move_R(Solved_state)
-#     move.move_U2(Solved_state)
-#     move.move_Rprime(Solved_state)
+# print("Scramble is: \n"," ".join(scramble_arr),"\n")
+for i in scramble_arr:
+    move.moves_dict[i](Unsolved_cube)    
     
+move.move_Rprime(Unsolved_cube)
 for i in range(3):
     for j in range(6):
-        print(Solved_state[j][i],end=" ")
+        print(Unsolved_cube[j][i],end=" ")
     print()
+solve.solveCube(Unsolved_cube,Solved_state)
