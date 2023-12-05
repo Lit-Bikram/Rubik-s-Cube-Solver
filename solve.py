@@ -28,7 +28,7 @@ def whiteCross(cube):
     white_daisy_moves = []
     for edge in white_edges:
         i,j = findEdge(cube,edge[0],edge[1])
-        print(i,j)
+        # print(i,j)
         if i[0] == 0:
             continue
         elif i[0] == 1:
@@ -185,27 +185,61 @@ def whiteCross(cube):
                 white_daisy_moves.append("R'")
                 move.moves_dict["B'"](cube)
                 white_daisy_moves.append("B'")
-        # print(white_daisy_moves)
-        # for i in range(3):
-        #     for j in range(6):
-        #         print(cube[j][i],end=" ")
-        #     print()            
-        # print()            
+                
     
-    print(white_daisy_moves)
+    print(white_daisy_moves,end="\n\n")  
     for i in range(3):
         for j in range(6):
             print(cube[j][i],end=" ")
         print()
+    print()
     
-    # if (cube[0][0][1][0] == "W") and (cube[0][1][0][0] == "W") and (cube[0][1][2][0] == "W") and (cube[0][2][1][0] == "W"):
-        # return
-    # else:
-        # whiteCross(cube)
+    
+def whiteDaisy(cube):
+    white_edges = [["W2","G8"],["W4","R8"],["W6","O8"],["W8","B8"]]
+    white_cross_moves = []
+    for edge in white_edges:
+        i,j = findEdge(cube,edge[0],edge[1])
+        val = cube[j[0]][j[1]][j[2]]
+        if val == "G8":
+            while (cube[2][0][1] != val):
+                move.moves_dict["U"](cube)
+                white_cross_moves.append("U")
+            move.moves_dict["F2"](cube)
+            white_cross_moves.append("F2")
+        elif val == "R8":
+            while (cube[4][0][1] != val):
+                move.moves_dict["U"](cube)
+                white_cross_moves.append("U")
+            move.moves_dict["L2"](cube)
+            white_cross_moves.append("L2")
+        elif val == "O8":
+            while (cube[1][0][1] != val):
+                move.moves_dict["U"](cube)
+                white_cross_moves.append("U")
+            move.moves_dict["R2"](cube)
+            white_cross_moves.append("R2")
+        elif val == "B8":
+            while (cube[5][0][1] != val):
+                move.moves_dict["U"](cube)
+                white_cross_moves.append("U")
+            move.moves_dict["B2"](cube)
+            white_cross_moves.append("B2")
+            
+                
+        
+    print(white_cross_moves,end="\n\n")
+    for i in range(3):
+        for j in range(6):
+            print(cube[j][i],end=" ")
+        print()
+    print()
+    
 
 def solveCube(cube,cube_solved):
     print("SoLve the white cross : ")
     
     whiteCross(cube)
+    whiteDaisy(cube)
     
     return
