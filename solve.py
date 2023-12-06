@@ -23,7 +23,7 @@ def findEdge(cube,x,y):
     return temp1,temp2
 
 
-def whiteCross(cube):
+def whiteDaisy(cube):
     white_edges = [["W2","G8"],["W4","R8"],["W6","O8"],["W8","B8"]]
     white_daisy_moves = []
     for edge in white_edges:
@@ -195,7 +195,7 @@ def whiteCross(cube):
     print()
     
     
-def whiteDaisy(cube):
+def whiteCross(cube):
     white_edges = [["W2","G8"],["W4","R8"],["W6","O8"],["W8","B8"]]
     white_cross_moves = []
     for edge in white_edges:
@@ -239,7 +239,7 @@ def whiteDaisy(cube):
 def solveCube(cube,cube_solved):
     print("SoLve the white cross : ")
     
-    whiteCross(cube)
     whiteDaisy(cube)
+    whiteCross(cube)
     
     return
