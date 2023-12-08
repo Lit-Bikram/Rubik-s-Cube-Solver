@@ -74,9 +74,6 @@ print("Scramble is: \n"," ".join(scramble_arr),"\n")
 for i in scramble_arr:
     move.moves_dict[i](Unsolved_cube)
 
-# move.move_Uprime(Unsolved_cube)
-# move.move_R(Unsolved_cube)
-
 
 for i in range(3):
     for j in range(6):
