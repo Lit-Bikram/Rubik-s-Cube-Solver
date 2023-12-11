@@ -275,108 +275,145 @@ def firstLayer(cube):
     first_layer_moves = []
     
     for corner in white_corners:
-        corner_position = []  #it is the position of the corner
-        i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
-        # print(corner[0],corner[1],corner[2])
-        # print(i,j,k)
-        corner_position.append(i[0])
-        corner_position.append(j[0])
-        corner_position.append(k[0])
-        corner_position.sort()
-        print(corner_position)
-        
-        if corner_position[0] == 0:
-            if corner[0] == "W3":
-                corner_position_temp = corner_position
-                while (corner_position_temp != [0,1,2]):
-                    move.moves_dict["U"](cube)
-                    first_layer_moves.append("U")
-                    corner_position_temp.clear()
-                    i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
-                    corner_position_temp.append(i[0])
-                    corner_position_temp.append(j[0])
-                    corner_position_temp.append(k[0])
-                    corner_position_temp.sort()
-                    
-                while (cube[3][0][2] != "W3"):
-                    move.moves_dict["R"](cube)
-                    first_layer_moves.append("R")
-                    move.moves_dict["U"](cube)
-                    first_layer_moves.append("U")
-                    move.moves_dict["R'"](cube)
-                    first_layer_moves.append("R'")
-                    move.moves_dict["U'"](cube)
-                    first_layer_moves.append("U'")  
-            
-            elif corner[0] == "W1":
-                corner_position_temp = corner_position
-                while (corner_position_temp != [0,2,4]):
-                    move.moves_dict["U"](cube)
-                    first_layer_moves.append("U")
-                    corner_position_temp.clear()
-                    i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
-                    corner_position_temp.append(i[0])
-                    corner_position_temp.append(j[0])
-                    corner_position_temp.append(k[0])
-                    corner_position_temp.sort()
-                    
-                while (cube[3][0][0] != "W1"):
-                    move.moves_dict["L'"](cube)
-                    first_layer_moves.append("L'")
-                    move.moves_dict["U'"](cube)
-                    first_layer_moves.append("U'")
-                    move.moves_dict["L"](cube)
-                    first_layer_moves.append("L")
-                    move.moves_dict["U"](cube)
-                    first_layer_moves.append("U")
-            
-            elif corner[0] == "W7":
-                corner_position_temp = corner_position
-                while (corner_position_temp != [0,4,5]):
-                    move.moves_dict["U"](cube)
-                    first_layer_moves.append("U")
-                    corner_position_temp.clear()
-                    i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
-                    corner_position_temp.append(i[0])
-                    corner_position_temp.append(j[0])
-                    corner_position_temp.append(k[0])
-                    corner_position_temp.sort()
-                    
-                while (cube[3][2][0] != "W7"):
-                    move.moves_dict["L"](cube)
-                    first_layer_moves.append("L")
-                    move.moves_dict["U"](cube)
-                    first_layer_moves.append("U")
-                    move.moves_dict["L'"](cube)
-                    first_layer_moves.append("L'")
-                    move.moves_dict["U'"](cube)
-                    first_layer_moves.append("U'")
-                 
-            if corner[0] == "W9":
-                corner_position_temp = corner_position
-                while (corner_position_temp != [0,1,5]):
-                    move.moves_dict["U"](cube)
-                    first_layer_moves.append("U")
-                    corner_position_temp.clear()
-                    i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
-                    corner_position_temp.append(i[0])
-                    corner_position_temp.append(j[0])
-                    corner_position_temp.append(k[0])
-                    corner_position_temp.sort()
-                    
-                while (cube[3][2][2] != "W9"):
-                    print(True)
-                    move.moves_dict["R'"](cube)
-                    first_layer_moves.append("R'")
-                    move.moves_dict["U'"](cube)
-                    first_layer_moves.append("U'")
-                    move.moves_dict["R"](cube)
-                    first_layer_moves.append("R")
-                    move.moves_dict["U"](cube)
-                    first_layer_moves.append("U")
-            
+
+        def solveFirstLayer(cube):
+            corner_position = []  #it is the position of the corner
+            i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
+            # print(corner[0],corner[1],corner[2])
+            # print(i,j,k)
+            corner_position.append(i[0])
+            corner_position.append(j[0])
+            corner_position.append(k[0])
+            corner_position.sort()
+            print(corner_position)
+            if corner_position[0] == 0:
+                if corner[0] == "W3":
+                    corner_position_temp = corner_position
+                    while (corner_position_temp != [0,1,2]):
+                        move.moves_dict["U"](cube)
+                        first_layer_moves.append("U")
+                        corner_position_temp.clear()
+                        i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
+                        corner_position_temp.append(i[0])
+                        corner_position_temp.append(j[0])
+                        corner_position_temp.append(k[0])
+                        corner_position_temp.sort()
                         
-        
+                    while (cube[3][0][2] != "W3"):
+                        move.moves_dict["R"](cube)
+                        first_layer_moves.append("R")
+                        move.moves_dict["U"](cube)
+                        first_layer_moves.append("U")
+                        move.moves_dict["R'"](cube)
+                        first_layer_moves.append("R'")
+                        move.moves_dict["U'"](cube)
+                        first_layer_moves.append("U'")  
+                
+                elif corner[0] == "W1":
+                    corner_position_temp = corner_position
+                    while (corner_position_temp != [0,2,4]):
+                        move.moves_dict["U"](cube)
+                        first_layer_moves.append("U")
+                        corner_position_temp.clear()
+                        i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
+                        corner_position_temp.append(i[0])
+                        corner_position_temp.append(j[0])
+                        corner_position_temp.append(k[0])
+                        corner_position_temp.sort()
+                        
+                    while (cube[3][0][0] != "W1"):
+                        move.moves_dict["L'"](cube)
+                        first_layer_moves.append("L'")
+                        move.moves_dict["U'"](cube)
+                        first_layer_moves.append("U'")
+                        move.moves_dict["L"](cube)
+                        first_layer_moves.append("L")
+                        move.moves_dict["U"](cube)
+                        first_layer_moves.append("U")
+                
+                elif corner[0] == "W7":
+                    corner_position_temp = corner_position
+                    while (corner_position_temp != [0,4,5]):
+                        move.moves_dict["U"](cube)
+                        first_layer_moves.append("U")
+                        corner_position_temp.clear()
+                        i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
+                        corner_position_temp.append(i[0])
+                        corner_position_temp.append(j[0])
+                        corner_position_temp.append(k[0])
+                        corner_position_temp.sort()
+                        
+                    while (cube[3][2][0] != "W7"):
+                        move.moves_dict["L"](cube)
+                        first_layer_moves.append("L")
+                        move.moves_dict["U"](cube)
+                        first_layer_moves.append("U")
+                        move.moves_dict["L'"](cube)
+                        first_layer_moves.append("L'")
+                        move.moves_dict["U'"](cube)
+                        first_layer_moves.append("U'")
+                    
+                elif corner[0] == "W9":
+                    corner_position_temp = corner_position
+                    while (corner_position_temp != [0,1,5]):
+                        move.moves_dict["U"](cube)
+                        first_layer_moves.append("U")
+                        corner_position_temp.clear()
+                        i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
+                        corner_position_temp.append(i[0])
+                        corner_position_temp.append(j[0])
+                        corner_position_temp.append(k[0])
+                        corner_position_temp.sort()
+                        
+                    while (cube[3][2][2] != "W9"):
+                        move.moves_dict["R'"](cube)
+                        first_layer_moves.append("R'")
+                        move.moves_dict["U'"](cube)
+                        first_layer_moves.append("U'")
+                        move.moves_dict["R"](cube)
+                        first_layer_moves.append("R")
+                        move.moves_dict["U"](cube)
+                        first_layer_moves.append("U")
+                
+            else:
+                if (corner_position == [2,3,4]):
+                    move.moves_dict["L'"](cube)
+                    first_layer_moves.append("L'")
+                    move.moves_dict["U'"](cube)
+                    first_layer_moves.append("U'")
+                    move.moves_dict["L"](cube)
+                    first_layer_moves.append("L")
+                    solveFirstLayer(cube)
+                elif (corner_position == [1,2,3]):
+                    move.moves_dict["R"](cube)
+                    first_layer_moves.append("R")
+                    move.moves_dict["U"](cube)
+                    first_layer_moves.append("U")
+                    move.moves_dict["R'"](cube)
+                    first_layer_moves.append("R'")
+                    solveFirstLayer(cube)
+                elif (corner_position == [3,4,5]):
+                    move.moves_dict["L"](cube)
+                    first_layer_moves.append("L")
+                    move.moves_dict["U"](cube)
+                    first_layer_moves.append("U")
+                    move.moves_dict["L'"](cube)
+                    first_layer_moves.append("L'")
+                    solveFirstLayer(cube)
+                elif (corner_position == [1,3,5]):
+                    move.moves_dict["R'"](cube)
+                    first_layer_moves.append("R'")
+                    move.moves_dict["U'"](cube)
+                    first_layer_moves.append("U'")
+                    move.moves_dict["R"](cube)
+                    first_layer_moves.append("R")
+                    solveFirstLayer(cube)
+                    
+                    
+                
+                
+        solveFirstLayer(cube)
+    
     
     display(cube)
     print(first_layer_moves)
@@ -391,15 +428,15 @@ def solveCube(cube,cube_solved):
     print("SoLve the White Cross : ")
     whiteCross(cube)
     
-    move.move_U(cube)
-    move.move_F(cube)
-    move.move_U(cube)
-    move.move_Fprime(cube)
-    move.move_Uprime(cube)
-    move.move_U2(cube)
-    move.move_Bprime(cube)
-    move.move_Uprime(cube)
-    move.move_B(cube)
+    # move.move_U(cube)
+    # move.move_F(cube)
+    # move.move_U(cube)
+    # move.move_Fprime(cube)
+    # move.move_Uprime(cube)
+    # move.move_U2(cube)
+    # move.move_Bprime(cube)
+    # move.move_Uprime(cube)
+    # move.move_B(cube)
     
     display(cube)
     print("SoLve the First Layer : ")

@@ -65,9 +65,9 @@ Solved_state = [
 ]
 
 Unsolved_cube = Solved_state
-scramble_arr = ["R'", 'D', 'R', 'U2', 'B2', 'U', 'D2', 'B', 'L2', "R'", 'B2', 'R', 'B2', 'D2', 'L2', 'F2', 'D2', 'L', 'B2', 'L']
+# scramble_arr = ["R'", 'D', 'R', 'U2', 'B2', 'U', 'D2', 'B', 'L2', "R'", 'B2', 'R', 'B2', 'D2', 'L2', 'F2', 'D2', 'L', 'B2', 'L']
 
-# scramble_arr = scramble.scrambler()
+scramble_arr = scramble.scrambler()
 
 
 print("Scramble is: \n"," ".join(scramble_arr),"\n")
