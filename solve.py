@@ -1,6 +1,12 @@
 import moves as move
 
-
+def display(cube):
+    for i in range(3):
+        for j in range(6):
+            print(cube[j][i],end=" ")
+        print()
+    print()
+    
 def findEdge(cube,x,y):
     
     # this function returns the current index of the edge
@@ -53,7 +59,7 @@ def findCorner(cube,x,y,z):
                     temp3.append(i)
                     temp3.append(j)
                     temp3.append(k)
-    
+                     
     return temp1, temp2, temp3
 
 def whiteDaisy(cube):
@@ -221,11 +227,6 @@ def whiteDaisy(cube):
                 
     
     print(white_daisy_moves,end="\n\n")  
-    for i in range(3):
-        for j in range(6):
-            print(cube[j][i],end=" ")
-        print()
-    print()
     
     
 def whiteCross(cube):
@@ -262,11 +263,7 @@ def whiteCross(cube):
                 
         
     print(white_cross_moves,end="\n\n")
-    for i in range(3):
-        for j in range(6):
-            print(cube[j][i],end=" ")
-        print()
-    print()
+   
     
 def firstLayer(cube):
     white_corners = [
@@ -275,27 +272,47 @@ def firstLayer(cube):
         ["W7","R7","B9"],
         ["W9","B7","O9"]
     ]
-    
-    for i in range(3):
-        for j in range(6):
-            print(cube[j][i],end=" ")
-        print()
-    print()
+    first_layer_moves = []
     
     for corner in white_corners:
         corner_position = []  #it is the position of the corner
-        first_layer_moves = []
         i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
-        print(corner[0],corner[1],corner[2])
-        print(i,j,k)
+        # print(corner[0],corner[1],corner[2])
+        # print(i,j,k)
         corner_position.append(i[0])
         corner_position.append(j[0])
         corner_position.append(k[0])
         corner_position.sort()
         print(corner_position)
         
+        if corner_position[0] == 0:
+            if corner[0] == "W3":
+                corner_position_temp = corner_position
+                while (corner_position_temp != [0,1,2]):
+                    move.moves_dict["U"](cube)
+                    first_layer_moves.append("U")
+                    corner_position_temp.clear()
+                    i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
+                    corner_position_temp.append(i[0])
+                    corner_position_temp.append(j[0])
+                    corner_position_temp.append(k[0])
+                    corner_position_temp.sort()
+                    
+
+                while (cube[3][0][2] != "W3"):
+                    print(True)
+                    move.moves_dict["R"](cube)
+                    first_layer_moves.append("R")
+                    move.moves_dict["U"](cube)
+                    first_layer_moves.append("U")
+                    move.moves_dict["R'"](cube)
+                    first_layer_moves.append("R'")
+                    move.moves_dict["U'"](cube)
+                    first_layer_moves.append("U'")
+                    
+                    
         
-        
+    display(cube)
     print(first_layer_moves)
                     
     return
@@ -308,11 +325,10 @@ def solveCube(cube,cube_solved):
     print("SoLve the White Cross : ")
     whiteCross(cube)
     
-    move.move_L(cube)
+    move.move_F(cube)
     move.move_U(cube)
-    move.move_Lprime(cube)
+    move.move_Fprime(cube)
     move.move_Uprime(cube)
-    move.move_U2(cube)
     
     print("SoLve the First Layer : ")
     firstLayer(cube)
