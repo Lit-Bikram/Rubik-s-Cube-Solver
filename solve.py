@@ -888,7 +888,66 @@ def secondLayer(cube):
     
 def yellowCross(cube):
     yellow_cross_moves = []
-    
+    def solveYellowCross():
+        if cube[0][0][1][0] == "Y" and cube[0][2][1][0] == "Y" and cube[0][1][0][0] =="Y" and cube[0][1][2][0] == "Y":
+            return
+        elif (cube[0][0][1][0] == "Y" and cube[0][2][1][0] == "Y") or (cube[0][1][0][0] =="Y" and cube[0][1][2][0] == "Y"):
+            while (cube[0][1][0][0] !="Y" and cube[0][1][2][0] != "Y"):
+                move.moves_dict["U"](cube)
+                yellow_cross_moves.append("U")
+            move.moves_dict["F"](cube)
+            yellow_cross_moves.append("F")
+            move.moves_dict["R"](cube)
+            yellow_cross_moves.append("R")
+            move.moves_dict["U"](cube)
+            yellow_cross_moves.append("U")
+            move.moves_dict["R'"](cube)
+            yellow_cross_moves.append("R'")
+            move.moves_dict["U'"](cube)
+            yellow_cross_moves.append("U'")
+            move.moves_dict["F'"](cube)
+            yellow_cross_moves.append("F'")
+        elif (cube[0][0][1][0] == "Y" and cube[0][1][2][0] == "Y") or (cube[0][1][2][0] == "Y" and cube[0][2][1][0] == "Y") or (cube[0][2][1][0] == "Y" and cube[0][1][0][0] =="Y") or (cube[0][1][0][0] =="Y" and cube[0][0][1][0] == "Y"):
+            if (cube[0][0][1][0] == "Y" and cube[0][1][2][0] == "Y"):
+                move.moves_dict["U'"](cube)
+                yellow_cross_moves.append("U'")
+            elif (cube[0][1][2][0] == "Y" and cube[0][2][1][0] == "Y"):
+                move.moves_dict["U2"](cube)
+                yellow_cross_moves.append("U2")
+            elif (cube[0][2][1][0] == "Y" and cube[0][1][0][0] =="Y"):
+                move.moves_dict["U"](cube)
+                yellow_cross_moves.append("U")
+            else:
+                pass
+            move.moves_dict["F"](cube)
+            yellow_cross_moves.append("F")
+            for i in range(2):
+                move.moves_dict["R"](cube)
+                yellow_cross_moves.append("R")
+                move.moves_dict["U"](cube)
+                yellow_cross_moves.append("U")
+                move.moves_dict["R'"](cube)
+                yellow_cross_moves.append("R'")
+                move.moves_dict["U'"](cube)
+                yellow_cross_moves.append("U'")
+            move.moves_dict["F'"](cube)
+            yellow_cross_moves.append("F'")
+        else:
+            move.moves_dict["F"](cube)
+            yellow_cross_moves.append("F")
+            move.moves_dict["R"](cube)
+            yellow_cross_moves.append("R")
+            move.moves_dict["U"](cube)
+            yellow_cross_moves.append("U")
+            move.moves_dict["R'"](cube)
+            yellow_cross_moves.append("R'")
+            move.moves_dict["U'"](cube)
+            yellow_cross_moves.append("U'")
+            move.moves_dict["F'"](cube)
+            yellow_cross_moves.append("F'")
+            solveYellowCross()
+    solveYellowCross()
+    print(yellow_cross_moves,"\n")
 
 def solveCube(cube,cube_solved):
     
@@ -903,7 +962,7 @@ def solveCube(cube,cube_solved):
     
     print("Solve the second layer : ")
     secondLayer(cube)
-    
+    display(cube)
     print("Solve the Yellow Cross : ")
     yellowCross(cube)
     display(cube)
