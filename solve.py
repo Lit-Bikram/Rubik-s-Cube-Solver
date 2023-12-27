@@ -949,6 +949,77 @@ def yellowCross(cube):
     solveYellowCross()
     print(yellow_cross_moves,"\n")
 
+
+def yellowEdge(cube):
+    yellow_edge_moves = []
+    edges = [["Y6","O2"],["Y8","G2"],["Y4","R2"],["Y2","B2"]]
+    edges_position = []
+    for edge in edges:
+        i,j = findEdge(cube,edge[0],edge[1])
+        edges_position.append(j[0])
+    
+    def sexyMove():
+        move.moves_dict["R"](cube)
+        yellow_edge_moves.append("R")
+        move.moves_dict["U"](cube)
+        yellow_edge_moves.append("U")
+        move.moves_dict["R'"](cube)
+        yellow_edge_moves.append("R'")
+        move.moves_dict["U"](cube)
+        yellow_edge_moves.append("U")
+        move.moves_dict["R"](cube)
+        yellow_edge_moves.append("R")
+        move.moves_dict["U2"](cube)
+        yellow_edge_moves.append("U2")
+        move.moves_dict["R'"](cube)
+        yellow_edge_moves.append("R'")
+    
+    def solveYellowEdge():
+        edges_position = []
+        for edge in edges:
+            i,j = findEdge(cube,edge[0],edge[1])
+            edges_position.append(j[0])
+        
+        if edges_position == [1,2,4,5]:
+            print("All edges are in position ")
+            return
+        elif edges_position == [1,2,5,4]:
+            move.moves_dict["U'"](cube)
+            yellow_edge_moves.append("U'")
+            sexyMove()
+            move.moves_dict["U2"](cube)
+            yellow_edge_moves.append("U2")
+        elif edges_position == [5,2,4,1]:
+            move.moves_dict["U2"](cube)
+            yellow_edge_moves.append("U2")
+            sexyMove()
+            move.moves_dict["U'"](cube)
+            yellow_edge_moves.append("U'")
+        elif edges_position == [2,1,4,5]:
+            move.moves_dict["U"](cube)
+            yellow_edge_moves.append("U")
+            sexyMove()
+        elif edges_position == [1,4,2,5]:
+            sexyMove()
+            move.moves_dict["U"](cube)
+            yellow_edge_moves.append("U")
+        elif edges_position == [1,5,4,2]:
+            sexyMove()
+            solveYellowEdge()
+        elif edges_position == [4,2,1,5]:
+            move.moves_dict["U2"](cube)
+            yellow_edge_moves.append("U2")
+            sexyMove()
+            solveYellowEdge()
+        else:
+            move.moves_dict["U"](cube)
+            yellow_edge_moves.append("U")
+            solveYellowEdge()
+    solveYellowEdge()
+    print(yellow_edge_moves,"\n")
+    return
+
+
 def solveCube(cube,cube_solved):
     
     print("SoLve the White Daisy : ")
@@ -962,8 +1033,14 @@ def solveCube(cube,cube_solved):
     
     print("Solve the second layer : ")
     secondLayer(cube)
-    display(cube)
+    
     print("Solve the Yellow Cross : ")
     yellowCross(cube)
+    
+    display(cube)
+    
+    print("Solve the Yellow Edges : ")
+    yellowEdge(cube)
+    
     display(cube)
     return
