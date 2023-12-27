@@ -953,10 +953,10 @@ def yellowCross(cube):
 def yellowEdge(cube):
     yellow_edge_moves = []
     edges = [["Y6","O2"],["Y8","G2"],["Y4","R2"],["Y2","B2"]]
-    edges_position = []
-    for edge in edges:
-        i,j = findEdge(cube,edge[0],edge[1])
-        edges_position.append(j[0])
+    # edges_position = []
+    # for edge in edges:
+    #     i,j = findEdge(cube,edge[0],edge[1])
+    #     edges_position.append(j[0])
     
     def sexyMove():
         move.moves_dict["R"](cube)
@@ -1015,10 +1015,82 @@ def yellowEdge(cube):
             move.moves_dict["U"](cube)
             yellow_edge_moves.append("U")
             solveYellowEdge()
+            
     solveYellowEdge()
     print(yellow_edge_moves,"\n")
     return
 
+def yellowCorner(cube):
+    yellow_corner_moves = []
+    yellow_corners = [
+        ["Y1","R1","B3"],
+        ["Y3","B1","O3"],
+        ["Y7","G1","R3"],
+        ["Y9","O1","G3"]
+    ]
+    def leftRightmove():
+        move.moves_dict["U"](cube)
+        yellow_corner_moves.append("U")
+        move.moves_dict["R"](cube)
+        yellow_corner_moves.append("R")
+        move.moves_dict["U'"](cube)
+        yellow_corner_moves.append("U'")
+        move.moves_dict["L'"](cube)
+        yellow_corner_moves.append("L'")
+        move.moves_dict["U"](cube)
+        yellow_corner_moves.append("U")
+        move.moves_dict["R'"](cube)
+        yellow_corner_moves.append("R'")
+        move.moves_dict["U'"](cube)
+        yellow_corner_moves.append("U'")
+        move.moves_dict["L"](cube)
+        yellow_corner_moves.append("L")
+    
+    def solveYellowCorner():
+        corner_position = []
+        for corner in yellow_corners:
+            temp = []
+            i,j,k = findCorner(cube,corner[0],corner[1],corner[2])
+            temp = [i[0],j[0],k[0]]
+            temp.sort()
+            corner_position.append(temp)
+        
+        print(corner_position)
+        
+        if corner_position == [[0,4,5],[0,1,5],[0,2,4],[0,1,2]]:
+            print(True)
+            return
+        elif corner_position[0] == [0,4,5]:
+            move.moves_dict["U2"](cube)
+            yellow_corner_moves.append("U2")
+            leftRightmove()
+            move.moves_dict["U2"](cube)
+            yellow_corner_moves.append("U2")
+            solveYellowCorner()
+        elif corner_position[1] == [0,1,5]:
+            move.moves_dict["U"](cube)
+            yellow_corner_moves.append("U")
+            leftRightmove()
+            move.moves_dict["U'"](cube)
+            yellow_corner_moves.append("U'")
+            solveYellowCorner()
+        elif corner_position[2] == [0,2,4]:
+            move.moves_dict["U'"](cube)
+            yellow_corner_moves.append("U'")
+            leftRightmove()
+            move.moves_dict["U"](cube)
+            yellow_corner_moves.append("U")
+            solveYellowCorner()
+        elif corner_position[3] == [0,1,2]:
+            leftRightmove()
+            solveYellowCorner()
+        else:
+            leftRightmove()
+            solveYellowCorner()
+    
+    solveYellowCorner()
+    print(yellow_corner_moves,"\n")
+    return
 
 def solveCube(cube,cube_solved):
     
@@ -1037,10 +1109,12 @@ def solveCube(cube,cube_solved):
     print("Solve the Yellow Cross : ")
     yellowCross(cube)
     
-    display(cube)
-    
     print("Solve the Yellow Edges : ")
     yellowEdge(cube)
-    
     display(cube)
+    print("Solve the Yellow Corners :")
+    yellowCorner(cube)
+    display(cube)
+    
+ 
     return
