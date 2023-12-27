@@ -9,9 +9,6 @@ def display(cube):
     
 def findEdge(cube,x,y):
     
-    # this function returns the current index of the edge
-    
-    
     for i in range(6):
         for j in range(3):
             for k in range(3):
@@ -225,7 +222,7 @@ def whiteDaisy(cube):
                 white_daisy_moves.append("B'")
                 
     
-    print(white_daisy_moves,end="\n\n")  
+    print(" ".join(white_daisy_moves),end="\n\n")  
     
     
 def whiteCross(cube):
@@ -261,7 +258,7 @@ def whiteCross(cube):
             
                 
         
-    print(white_cross_moves,end="\n\n")
+    print(" ".join(white_cross_moves),end="\n\n")
    
 
 def firstLayer(cube):
@@ -410,7 +407,7 @@ def firstLayer(cube):
         solveFirstLayer(cube,corner)
     
     
-    print(first_layer_moves,"\n")
+    print(" ".join(first_layer_moves),"\n")
                     
     return
 
@@ -882,7 +879,7 @@ def secondLayer(cube):
                 move.moves_dict["B'"](cube)
                 second_layer_moves.append("B'")
                 insertBlueRedEdge()
-    print(second_layer_moves,"\n")
+    print(" ".join(second_layer_moves),"\n")
                     
     return
     
@@ -947,17 +944,13 @@ def yellowCross(cube):
             yellow_cross_moves.append("F'")
             solveYellowCross()
     solveYellowCross()
-    print(yellow_cross_moves,"\n")
+    print(" ".join(yellow_cross_moves),"\n")
 
 
 def yellowEdge(cube):
     yellow_edge_moves = []
     edges = [["Y6","O2"],["Y8","G2"],["Y4","R2"],["Y2","B2"]]
-    # edges_position = []
-    # for edge in edges:
-    #     i,j = findEdge(cube,edge[0],edge[1])
-    #     edges_position.append(j[0])
-    
+
     def sexyMove():
         move.moves_dict["R"](cube)
         yellow_edge_moves.append("R")
@@ -1017,7 +1010,7 @@ def yellowEdge(cube):
             solveYellowEdge()
             
     solveYellowEdge()
-    print(yellow_edge_moves,"\n")
+    print(" ".join(yellow_edge_moves),"\n")
     return
 
 def yellowCorner(cube):
@@ -1055,10 +1048,7 @@ def yellowCorner(cube):
             temp.sort()
             corner_position.append(temp)
         
-        print(corner_position)
-        
         if corner_position == [[0,4,5],[0,1,5],[0,2,4],[0,1,2]]:
-            print(True)
             return
         elif corner_position[0] == [0,4,5]:
             move.moves_dict["U2"](cube)
@@ -1089,10 +1079,31 @@ def yellowCorner(cube):
             solveYellowCorner()
     
     solveYellowCorner()
-    print(yellow_corner_moves,"\n")
+    print(" ".join(yellow_corner_moves),"\n")
     return
 
-def solveCube(cube,cube_solved):
+def yellowCornerOrientation(cube):
+    yellow_corner_orientation_moves = []
+    for i in range(4):
+        if cube[0][2][2][0] == "Y":
+            move.moves_dict["U"](cube)
+            yellow_corner_orientation_moves.append("U")
+            continue
+        else:
+            while (cube[0][2][2][0] != "Y"):
+                move.moves_dict["R'"](cube)
+                yellow_corner_orientation_moves.append("R'")
+                move.moves_dict["D'"](cube)
+                yellow_corner_orientation_moves.append("D'")
+                move.moves_dict["R"](cube)
+                yellow_corner_orientation_moves.append("R")
+                move.moves_dict["D"](cube)
+                yellow_corner_orientation_moves.append("D")
+            move.moves_dict["U"](cube)
+            yellow_corner_orientation_moves.append("U")
+    print(" ".join(yellow_corner_orientation_moves),"\n")
+
+def solveCube(cube):
     
     print("SoLve the White Daisy : ")
     whiteDaisy(cube)
@@ -1111,10 +1122,13 @@ def solveCube(cube,cube_solved):
     
     print("Solve the Yellow Edges : ")
     yellowEdge(cube)
-    display(cube)
+    
     print("Solve the Yellow Corners :")
     yellowCorner(cube)
+
+    print("Orient the Yellow Corners : ")
+    yellowCornerOrientation(cube)
+    
     display(cube)
     
- 
     return

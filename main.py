@@ -65,13 +65,12 @@ Solved_state = [
 ]
 
 Unsolved_cube = Solved_state
-# scramble_arr = ['L', 'B2', 'L2', "R'", 'F2', "D'", "B'", 'L', 'F', 'L', 'D2', "F'", "U'", "L'", 'D2', 'F', 'L2', "U'", 'B', 'R2']
 
 scramble_arr = scramble.scrambler()
 
 
-# print("Scramble is: \n", " ".join(scramble_arr), "\n")
-print("Scramble is: \n",scramble_arr, "\n")
+print("Scramble is: \n", " ".join(scramble_arr), "\n")
+
 for i in scramble_arr:
     move.moves_dict[i](Unsolved_cube)
 
@@ -82,4 +81,4 @@ for i in range(3):
     print()
 
 
-solve.solveCube(Unsolved_cube, Solved_state)
+solve.solveCube(Unsolved_cube)
